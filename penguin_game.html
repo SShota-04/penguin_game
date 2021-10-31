@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/sample.css">
+  <title>ロックホッパーを探せ！！</title>
+</head>
+
+<body>
+  <div id="menu_display">
+    <div id="menu_text">
+        <h1>ロックホーパー</h1>
+        <h1>(イワトビペンギン)を探せ！！</h1>
+        <a href="#" id="sagase" class="pushcircle">探す！</a>
+    </div>
+  </div>
+    <div class="splashbg1"></div>
+    <div class="splashbg2"></div>
+  
+    <div class="container">
+      <div id="modal01" class="modal js-modal">
+          <div class="js-modal-close" style="
+            height: 100vh;
+            position: absolute;
+            width: 100%;
+            background-image: url(img/紙吹雪が舞う様子のGIF画像紙_gifmagazine.gif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8;
+            background-blend-mode: screen;
+            background-color: #333;
+          "></div>
+        <div class="modal__content">
+            <p>よくぞ見つけた！</p>
+            <a href="https://icon-rainbow.com/%e3%83%ad%e3%82%a4%e3%83%a4%e3%83%ab%e3%83%9a%e3%83%b3%e3%82%ae%e3%83%b3%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90-2/" alt="アイコンダウンロード" class="btn btn-border" target="blank">ロックホッパーアイコンをダウンロード！</a>
+            <a class="js-modal-close btn btn-border" href="">閉じる</a>
+        </div>
+      </div>
+      <div id="modal02" class="modal js-modal">
+        <div class="modal__bg js-modal-close"></div>
+        <div class="modal__content">
+            <p>え？何すか？</p>
+            <a class="js-modal-close btn btn-border" href="">閉じる</a>
+        </div>
+      </div>
+
+      <ul class="imgList">
+        <li><a href="#" class="js-modal-open" data-target="modal02"><img src="img/penguin1.png" alt="子ペンギン" /></a></li>
+        <li><a href="#" class="js-modal-open" data-target="modal02"><img src="img/penguin1.png" alt="子ペンギン" /></a></li>
+        <li><a href="#" class="js-modal-open" data-target="modal02"><img src="img/penguin1.png" alt="子ペンギン" /></a></li>
+        <li><a href="#" class="js-modal-open" data-target="modal02"><img src="img/penguin1.png" alt="子ペンギン" /></a></li>
+        <li><a href="#" class="js-modal-open" data-target="modal02"><img src="img/penguin1.png" alt="子ペンギン" /></a></li>
+        <li><a href="#" class="js-modal-open" data-target="modal02"><img src="img/penguin1.png" alt="子ペンギン" /></a></li>
+        <li><a href="#" class="js-modal-open" data-target="modal02"><img src="img/penguin1.png" alt="子ペンギン" /></a></li>
+        <li><a href="#" class="js-modal-open" data-target="modal02"><img src="img/penguin1.png" alt="子ペンギン" /></a></li>
+        <li><a href="#" class="js-modal-open" data-target="modal02"><img src="img/penguin1.png" alt="子ペンギン" /></a></li>
+        <li><a href="#" class="js-modal-open" data-target="modal01"><img src="img/penguin2.png" alt="イワトビペンギン" /></a></li>
+      </ul>
+      <div class="bg"></div>
+    </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/4-1-3/js/4-1-3.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+ <script>
+
+   //メニューのアニメーション
+   $('#sagase').on('click',function(){
+    $("#menu_text").delay(1200).fadeOut('slow');
+    $("#menu_display").delay(1500).fadeOut('slow',function(){
+        $('body').addClass('appear');
+    });  
+});
+
+  //モーダルウィンドウ
+$(function(){
+    $('.js-modal-open').each(function(){
+        $(this).on('click',function(){
+            let target = $(this).data('target');
+            let modal = document.getElementById(target);
+            $(modal).fadeIn();
+            return false;
+        });
+    });
+    $('.js-modal-close').on('click',function(){
+        $('.js-modal').fadeOut();
+        return false;
+    }); 
+});
+
+  //ランダム配置
+    $(function($){
+  let getRandomInt = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  // 要素の取得
+  let $container = $('.container'),
+    $imgList = $('.imgList').find('li'),
+    containerWidth = $container.width(),//コンテンツ幅取得
+    containerHeight = $container.height()/1.75;//コンテンツ高さ取得
+
+
+  // 前回作成した条件を関数化
+  function makeArray(value,list_arr,margin){
+    let max_num = value,//ランダムで生成する最大値
+      array = [],
+      random = getRandomInt(0, max_num),//ランダム数値生成
+      num = margin,//範囲数値
+      i=0,
+      len = array.length,//配列の数
+      loop = 0,//無限ループ対策
+      max_len = list_arr;//配列の最大数
+
+      array.push(random);
+      console.log('初期値'+random+'を生成');
+
+    while(true){
+      len = array.length;
+      loop = 0;//無限ループ対策
+      for (i = 0; i < len; i++) {
+
+        console.log('配列数【'+len+'】の'+i+'回目');
+        console.log('【'+array[i]+'】のループ');
+
+        let min = array[i]-num;//範囲の最小値
+        let max = array[i]+num;//範囲の最大値
+        if(Math.sign(min) == -1){//minが負の数になったときに最小値をに戻す(負の数だと無限ループ入っちゃう)
+          min = 0;
+        }
+        while((random >= min && random <= max) || array.includes(random) || random == 0){//左から:random数値が最小and最大の範囲外かどうか検証 or random数値が配列の数値と被らないか検証 or random数値が0じゃないかどうか検証
+
+          random = getRandomInt(0, max_num);//再度数値をリセット
+          console.log('ランダム数値【'+random+'】を生成');
+          if(!i == 0){
+            i=0;//変数をリセットして配列の一番最初から再スタート
+          }
+
+          min = array[i]-num;
+          max = array[i]+num;
+          if(Math.sign(min) == -1){
+            min = 0;
+          }
+
+          //①ここから
+          console.log('loopは'+loop+'回目');
+          if(loop == 30){//無限ループ対策
+            loop = 0;
+            console.log('無限ループ脱出');
+            break;
+          }
+          loop++;
+          //①ここまで
+
+        }
+      }
+      array.push(random);//配列に被らない数値を追加
+      console.log(random+'を追加');
+
+      if(Math.floor(max_len)-1 == len){//最後のループになったらwhileループを抜けるための条件式
+        // alert('配列と数値、範囲が被らない数値は【 '+array+' 】です');
+        return array;
+        break;
+      }
+    }
+  }
+
+  //生成した配列を変数に代入
+  var topPos = makeArray(containerHeight,$imgList.length,20);
+  var leftPos = makeArray(containerWidth,$imgList.length,80);
+  console.log('Y軸の数値'+topPos+'\nX軸の数値'+leftPos);
+
+
+  // ランダム座標を設定
+  $imgList.each(function(index) {
+    $(this).css({
+      top: topPos[index],
+      left: leftPos[index]
+    });
+  });
+});
+  </script>
+
+</body>
+
+</html>
